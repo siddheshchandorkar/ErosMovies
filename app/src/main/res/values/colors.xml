@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#01d277</color>
+    <color name="colorPrimaryDark">#081c24</color>
+    <color name="colorAccent">#01d277</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="transparent_56">#56000000</color>
+    <color name="transparent_more">#a9000000</color>
+    <color name="transparent_b7">#b7000000</color>
+    <color name="transparent_33">#8bc2bfbf</color>
+    <color name="app_transparent">#4c000000</color>
+    <color name="white">#ffffff</color>
+</resources>

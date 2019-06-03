@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Eros Movies </string>
+    <string name="tab_text_1">Top Rated</string>
+    <string name="tab_text_2">Favourite</string>
+
+    <string name="app_key">732bdacc6ee9b8efcbae09cab5843c5d</string>
+    <string name="vote_count">Vote Count</string>
+    <string name="popularity">Popularity</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="release_date">Release Date</string>
+    <string name="loading_movies">Loading Movies</string>
+    <string name="overview">Overview</string>
+    <string name="production_companies">Production Companies</string>
+    <string name="production_countries">Production Countries</string>
+    <string name="spoken_languages">Spoken Languages</string>
+    <string name="movie_duration">Movie Duration</string>
+
+</resources>
