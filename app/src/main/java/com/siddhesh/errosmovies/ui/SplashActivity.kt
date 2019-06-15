@@ -8,6 +8,9 @@ import android.widget.ImageView
 import com.example.erostest.MainActivity
 import com.siddhesh.errosmovies.R
 import com.squareup.picasso.Picasso
+import android.app.ActivityOptions
+
+
 
 class SplashActivity : AppCompatActivity() {
 
@@ -21,7 +24,9 @@ class SplashActivity : AppCompatActivity() {
             .into(findViewById<ImageView>(R.id.iv_splash))
 
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            val options = ActivityOptions.makeSceneTransitionAnimation(this)
+
+            startActivity(Intent(this, MainActivity::class.java),options.toBundle());
             finish()
         }, 3000)
     }

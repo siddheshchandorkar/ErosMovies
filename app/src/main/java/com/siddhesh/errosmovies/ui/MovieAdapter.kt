@@ -1,8 +1,12 @@
 package com.siddhesh.errosmovies.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
+import android.content.Intent
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.telephony.AccessNetworkConstants
 import android.util.Log
@@ -45,6 +49,12 @@ class MovieAdapter(
             .into(holder.ivMoviePoster)
         holder.rootView.setOnClickListener {
             iMovieClick.movieItemClick(position)
+
+            val options = ActivityOptions.makeSceneTransitionAnimation(context as Activity?, holder.ivMoviePoster, "robot")
+
+            var intent = Intent(context, MovieDetailsActivity::class.java)
+            intent.putExtra(Constants.KEY_MOVIE_ID, alMovie[position].id)
+            (context as Activity).startActivity(intent, options.toBundle())
         }
 
         holder.voteCountValue.text = alMovie[position].voteCount.toString()

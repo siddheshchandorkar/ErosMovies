@@ -1,5 +1,6 @@
 package com.example.erostest.ui.main
 
+import android.app.ActivityOptions
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -79,10 +80,11 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
 
 
     override fun movieItemClick(position: Int) {
-
-        var intent =Intent(activity, MovieDetailsActivity::class.java)
-        intent.putExtra(Constants.KEY_MOVIE_ID, alMovie[position].id)
-        startActivity(intent)
+//        val options = ActivityOptions.makeSceneTransitionAnimation(activity)
+//
+//        var intent =Intent(activity, MovieDetailsActivity::class.java)
+//        intent.putExtra(Constants.KEY_MOVIE_ID, alMovie[position].id)
+//        startActivity(intent, options.toBundle())
 
     }
 

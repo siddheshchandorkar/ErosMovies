@@ -58,6 +58,7 @@
                         android:layout_gravity="center_horizontal"
                         android:background="@color/colorPrimary"
                         android:scaleType="fitXY"
+                        android:transitionName="robot"
                         android:layout_height="400dp"/>
 
                 <TextView

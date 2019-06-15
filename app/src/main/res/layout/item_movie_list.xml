@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorPrimaryDark"
+                android:transitionName="robot"
                 android:layout_height="400dp"/>
 
         <LinearLayout

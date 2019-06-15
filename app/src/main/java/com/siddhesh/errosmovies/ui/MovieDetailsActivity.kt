@@ -13,6 +13,9 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.view.MenuItem
+import android.view.ViewTreeObserver
+
 
 
 
@@ -36,6 +39,17 @@ class MovieDetailsActivity : AppCompatActivity() {
             callAPi()
 
         findViewById<ImageView>(R.id.iv_back).setOnClickListener { onBackPressed() }
+    }
+
+   override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            android.R.id.home -> {
+                supportFinishAfterTransition()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun callAPi() {
@@ -73,6 +87,16 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun setUIDetails(movieDetails: MovieDetails) {
 
 
+        supportPostponeEnterTransition()
+//        findViewById<ImageView>(R.id.iv_movie_poster).getViewTreeObserver().addOnPreDrawListener(
+//            object : ViewTreeObserver.OnPreDrawListener {
+//                override fun onPreDraw(): Boolean {
+//                    ivBackdrop.getViewTreeObserver().removeOnPreDrawListener(this)
+//                    supportStartPostponedEnterTransition()
+//                    return true
+//                }
+//            }
+//        )
         Picasso.with(this)
             .load(Constants.imageBaseURL + movieDetails.posterPath)
 
