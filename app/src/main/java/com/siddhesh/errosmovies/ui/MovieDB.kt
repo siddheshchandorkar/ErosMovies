@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.erostest.model.MovieListItem
+import java.nio.file.Files.delete
+
+
 
 class MovieDB(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -50,6 +53,12 @@ class MovieDB(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
 
          return true
      }
+
+    fun favoriteDelete(id: Long): Boolean {
+        val db = writableDatabase
+
+        return db.delete(TABLE_FAVOURITE_MOVIE, COLUMN_MOVIE_ID + "=" + id, null) > 0
+    }
 
     fun readAllFavMovie(): ArrayList<MovieListItem> {
         val movies = ArrayList<MovieListItem>()

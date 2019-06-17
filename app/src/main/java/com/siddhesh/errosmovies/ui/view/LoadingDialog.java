@@ -1,4 +1,4 @@
-package com.siddhesh.errosmovies.ui;
+package com.siddhesh.errosmovies.ui.view;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;

@@ -1,10 +1,10 @@
-package com.siddhesh.errosmovies.ui
+package com.siddhesh.errosmovies.ui.view
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.ImageView
-import android.widget.TextView
 import com.example.erostest.Constants
 import com.selltm.app.networkkotlin.APIRequestsKotalin
 import com.siddhesh.errosmovies.R
@@ -14,19 +14,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.view.MenuItem
-import android.view.ViewTreeObserver
-
-
+import com.siddhesh.errosmovies.databinding.ActivityMovieDetailsBinding
+import com.squareup.picasso.NetworkPolicy
 
 
 class MovieDetailsActivity : AppCompatActivity() {
 
     private var movieId: Long = 0
+    private lateinit var  binding: ActivityMovieDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_movie_details)
+//        setContentView(R.layout.activity_movie_details)
+         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details)
+
 
         var bundle: Bundle = intent.extras
         if (bundle != null) {
@@ -36,7 +38,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         }
 
         if (!movieId.equals(0))
-            callAPi()
+            callAPi(binding)
 
         findViewById<ImageView>(R.id.iv_back).setOnClickListener { onBackPressed() }
     }
@@ -52,7 +54,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun callAPi() {
+    private fun callAPi(binding: ActivityMovieDetailsBinding) {
 
 
         APIRequestsKotalin.getMovieDetails(
@@ -77,14 +79,14 @@ class MovieDetailsActivity : AppCompatActivity() {
                         LoadingDialog.with().dialogDismiss()
 
 
-                        setUIDetails(response.body()!!)
+                        setUIDetails(response.body()!!, binding)
                     }
 
                 }
             })
     }
 
-    private fun setUIDetails(movieDetails: MovieDetails) {
+    private fun setUIDetails(movieDetails: MovieDetails, binding: ActivityMovieDetailsBinding) {
 
 
         supportPostponeEnterTransition()
@@ -99,20 +101,25 @@ class MovieDetailsActivity : AppCompatActivity() {
 //        )
         Picasso.with(this)
             .load(Constants.imageBaseURL + movieDetails.posterPath)
-
+            .networkPolicy(NetworkPolicy.OFFLINE)
             .into(findViewById<ImageView>(R.id.iv_movie_poster))
 
 
-        findViewById<TextView>(R.id.tv_overview).text = movieDetails.overview
-        findViewById<TextView>(R.id.tv_title).text = movieDetails.title+"("+movieDetails.releaseDate.subSequence(0, 4)+")"
-        findViewById<TextView>(R.id.tv_tags).text = movieDetails.genres.toString().replace("[","").replace("]", "")
-        findViewById<TextView>(R.id.tv_production_company).text = movieDetails.productionCompanies.toString().replace("[","").replace("]", "")
-        findViewById<TextView>(R.id.tv_production_country).text = movieDetails.productionCountries.toString().replace("[","").replace("]", "")
-        findViewById<TextView>(R.id.tv_SpokenLanguages).text = movieDetails.spokenLanguages.toString().replace("[","").replace("]", "")
+//        binding.setVariable(com.siddhesh.errosmovies.BR.movi)
+//        binding.setVariable(BR.user, movieDetails)
+        binding.movieDetails =movieDetails
+        binding.executePendingBindings()
 
-        val hours = movieDetails.runtime / 60
-        val minutes = movieDetails.runtime % 60
-        findViewById<TextView>(R.id.tv_duration).text = String.format("%d hr %02d min", hours, minutes)
+//        findViewById<TextView>(R.id.tv_overview).text = movieDetails.overview
+//        findViewById<TextView>(R.id.tv_title).text = movieDetails.title+"("+movieDetails.releaseDate.subSequence(0, 4)+")"
+//        findViewById<TextView>(R.id.tv_tags).text = movieDetails.genres.toString().replace("[","").replace("]", "")
+//        findViewById<TextView>(R.id.tv_production_company).text = movieDetails.productionCompanies.toString().replace("[","").replace("]", "")
+//        findViewById<TextView>(R.id.tv_production_country).text = movieDetails.productionCountries.toString().replace("[","").replace("]", "")
+//        findViewById<TextView>(R.id.tv_SpokenLanguages).text = movieDetails.spokenLanguages.toString().replace("[","").replace("]", "")
+
+//        val hours = movieDetails.runtime / 60
+//        val minutes = movieDetails.runtime % 60
+//        findViewById<TextView>(R.id.tv_duration).text = String.format("%d hr %02d min", hours, minutes)
 
     }
 }

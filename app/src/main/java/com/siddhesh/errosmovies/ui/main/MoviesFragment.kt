@@ -1,63 +1,92 @@
 package com.example.erostest.ui.main
 
-import android.app.ActivityOptions
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.support.v4.app.Fragment
-import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
 import android.widget.ProgressBar
-import com.example.erostest.Constants
 import com.example.erostest.model.MovieListItem
 import com.example.erostest.model.MovieResultByDiscoverPopularity
 import com.selltm.app.networkkotlin.APIRequestsKotalin
 import com.siddhesh.errosmovies.R
-import com.siddhesh.errosmovies.ui.*
+import com.siddhesh.errosmovies.ui.MovieDB
+import com.siddhesh.errosmovies.ui.view.LoadingDialog
+import com.siddhesh.errosmovies.ui.view.MovieAdapter
+import com.siddhesh.errosmovies.ui.view.MovieSearchAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-
 class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
     override fun addToFav(position: Int) {
 
-        if(index==0 && !alMovie[position].selected){
-        val builder = AlertDialog.Builder(activity)
-        builder.setTitle("Add To Favourite")
-        builder.setMessage("Do you want to add '"+alMovie[position]+"' as Favourite movie?")
-        //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+        if (!alMovie[position].selected) {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Add To Favourite")
+            builder.setMessage("Do you want to add '" + alMovie[position] + "' as Favourite movie?")
+            //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            if(movieDB!=null){
+            builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                if (movieDB != null) {
 
-                if(!movieDB.getAllFavId().toString().contains(alMovie[position].id.toString()))
-                    movieDB.insertUser(alMovie[position])
-                Log.d("Siddhesh", "Check DB:"+ movieDB.getAllFavId())
+                    if (!movieDB.getAllFavId().toString().contains(alMovie[position].id.toString()))
+                        movieDB.insertUser(alMovie[position])
+                    Log.d("Siddhesh", "Check DB:" + movieDB.getAllFavId())
 
-                alMovie[position].selected=true
-                adapter.notifyItemChanged(position)
+                    alMovie[position].selected = true
+                    adapter.notifyItemChanged(position)
 
 
+                }
             }
+
+            builder.setNegativeButton(android.R.string.no) { dialog, which ->
+
+                dialog.dismiss()
+            }
+
+
+            builder.show()
+        }else{
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Remove From Favourite")
+            builder.setMessage("Do you want to remove '" + alMovie[position] + "' from Favourite movie?")
+            //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+
+            builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                if (movieDB != null) {
+
+//                    if (!movieDB.getAllFavId().toString().contains(alMovie[position].id.toString()))
+//                        movieDB.insertUser(alMovie[position])
+//                    Log.d("Siddhesh", "Check DB:" + movieDB.getAllFavId())
+
+                    movieDB.favoriteDelete(alMovie.get(position).id)
+
+                    alMovie[position].selected = false
+                    adapter.notifyItemChanged(position)
+
+
+                }
+            }
+
+            builder.setNegativeButton(android.R.string.no) { dialog, which ->
+
+                dialog.dismiss()
+            }
+
+
+            builder.show()
         }
-
-        builder.setNegativeButton(android.R.string.no) { dialog, which ->
-
-            dialog.dismiss()
-        }
-
-
-        builder.show()}
 
     }
 
@@ -74,9 +103,9 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
     private var isLoading = false
     private var isLastPage = false
     private var isScrolling: Boolean = false
-    private  var movieListItem: MovieListItem? =null;
-    private     lateinit var movieDB : MovieDB
-        var index = 0
+    private var movieListItem: MovieListItem? = null;
+    private lateinit var movieDB: MovieDB
+    var index = 0
 
 
     override fun movieItemClick(position: Int) {
@@ -87,7 +116,6 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
 //        startActivity(intent, options.toBundle())
 
     }
-
 
 
     private var pageViewModel: PageViewModel? = null
@@ -112,7 +140,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
 
         movieDB = MovieDB(this!!.activity!!)
 
-       Log.d("Siddhesh", "Check DB:"+ movieDB.readAllFavMovie())
+        Log.d("Siddhesh", "Check DB:" + movieDB.readAllFavMovie())
 
 
         return root
@@ -121,7 +149,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
     override fun onResume() {
         super.onResume()
 
-        if(index==1){
+        if (index == 1) {
             alMovie.clear()
             alMovie.addAll(movieDB.readAllFavMovie())
             adapter.notifyDataSetChanged()
@@ -141,8 +169,8 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
         rcvMovie.adapter = adapter
         adapter.notifyDataSetChanged()
 
-        if(index==1)
-            etSearch.visibility= View.GONE
+        if (index == 1)
+            etSearch.visibility = View.GONE
         else {
 
 
@@ -269,11 +297,11 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
                         PAGE_SIZE = response.body()!!.totalPages
 
                         Log.d("Siddhesh", "Check page: " + nextPage + " & " + PAGE_SIZE)
-                        var ids= movieDB.getAllFavId().toString()
-                        for (i in 0..response.body()!!.results.size-1){
-                            var movieListItem= response.body()!!.results[i]
-                            if(ids.contains(movieListItem.id.toString())){
-                                movieListItem.selected=true
+                        var ids = movieDB.getAllFavId().toString()
+                        for (i in 0..response.body()!!.results.size - 1) {
+                            var movieListItem = response.body()!!.results[i]
+                            if (ids.contains(movieListItem.id.toString())) {
+                                movieListItem.selected = true
 
                             }
                             alMovie.add(movieListItem)
@@ -292,7 +320,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         if (isVisibleToUser) {
-                onResume()
+            onResume()
         }
     }
 

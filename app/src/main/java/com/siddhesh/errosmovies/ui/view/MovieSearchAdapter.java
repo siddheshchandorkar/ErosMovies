@@ -1,4 +1,4 @@
-package com.siddhesh.errosmovies.ui;
+package com.siddhesh.errosmovies.ui.view;
 
 import android.content.Context;
 import android.os.Looper;
@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.erostest.model.MovieListItem;
 import com.siddhesh.errosmovies.R;
+import com.siddhesh.errosmovies.ui.MovieSearchAPI;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;

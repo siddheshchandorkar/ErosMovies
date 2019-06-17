@@ -1,4 +1,4 @@
-package com.siddhesh.errosmovies.ui
+package com.siddhesh.errosmovies.ui.view
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -6,10 +6,7 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
-import android.telephony.AccessNetworkConstants
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +15,7 @@ import android.widget.TextView
 import com.example.erostest.Constants
 import com.example.erostest.model.MovieListItem
 import com.siddhesh.errosmovies.R
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 
 class MovieAdapter(
@@ -29,7 +27,13 @@ class MovieAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
-        return MovieHolder(LayoutInflater.from(context).inflate(R.layout.item_movie_list, parent, false))
+        return MovieHolder(
+            LayoutInflater.from(context).inflate(
+                R.layout.item_movie_list,
+                parent,
+                false
+            )
+        )
 
     }
 
@@ -45,7 +49,7 @@ class MovieAdapter(
 
         Picasso.with(context)
             .load(Constants.imageBaseURL + alMovie[position].posterPath)
-
+            .networkPolicy(NetworkPolicy.OFFLINE)
             .into(holder.ivMoviePoster)
         holder.rootView.setOnClickListener {
             iMovieClick.movieItemClick(position)

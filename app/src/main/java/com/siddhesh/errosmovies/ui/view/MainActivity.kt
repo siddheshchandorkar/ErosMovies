@@ -1,4 +1,4 @@
-package com.example.erostest
+package com.siddhesh.errosmovies.ui.view
 
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
