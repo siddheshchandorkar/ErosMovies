@@ -18,7 +18,7 @@ import com.example.erostest.model.MovieListItem
 import com.example.erostest.model.MovieResultByDiscoverPopularity
 import com.selltm.app.networkkotlin.APIRequestsKotalin
 import com.siddhesh.errosmovies.R
-import com.siddhesh.errosmovies.ui.MovieDB
+import com.siddhesh.errosmovies.ui.view_model.MovieDB
 import com.siddhesh.errosmovies.ui.view.LoadingDialog
 import com.siddhesh.errosmovies.ui.view.MovieAdapter
 import com.siddhesh.errosmovies.ui.view.MovieSearchAdapter

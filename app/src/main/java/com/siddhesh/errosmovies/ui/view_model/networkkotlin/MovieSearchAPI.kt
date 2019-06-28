@@ -1,4 +1,4 @@
-package com.siddhesh.errosmovies.ui
+package com.siddhesh.errosmovies.ui.view_model.networkkotlin
 
 import android.content.Context
 import android.util.Log
@@ -12,7 +12,6 @@ import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
-import java.net.URLEncoder
 import java.util.ArrayList
 import java.util.HashMap
 

@@ -1,4 +1,4 @@
-package com.siddhesh.errosmovies.ui
+package com.siddhesh.errosmovies.ui.view_model
 
 import android.content.ContentValues
 import android.content.Context
@@ -8,11 +8,12 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.erostest.model.MovieListItem
-import java.nio.file.Files.delete
 
 
-
-class MovieDB(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class MovieDB(context: Context) : SQLiteOpenHelper(context,
+    DATABASE_NAME, null,
+    DATABASE_VERSION
+) {
 
     override fun onCreate(db: SQLiteDatabase) {
 
@@ -42,13 +43,13 @@ class MovieDB(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
 
          val values = ContentValues()
          values.put(COLUMN_MOVIE_ID, movieListItem.id)
-         values.put(MovieDB.COLUMN_VOTE_COUNT, movieListItem.voteCount)
-         values.put(MovieDB.COLUMN_VOTE_AVERAGE, movieListItem.voteAverage)
-         values.put(MovieDB.COLUMN_TITLE, movieListItem.title)
-         values.put(MovieDB.COLUMN_POPULARITY, movieListItem.popularity)
-         values.put(MovieDB.COLUMN_POSTER_PATH, movieListItem.posterPath)
-         values.put(MovieDB.COLUMN_OVERVIEW, movieListItem.overview)
-         values.put(MovieDB.COLUMN_RELEASE_DATE, movieListItem.releaseDate)
+         values.put(COLUMN_VOTE_COUNT, movieListItem.voteCount)
+         values.put(COLUMN_VOTE_AVERAGE, movieListItem.voteAverage)
+         values.put(COLUMN_TITLE, movieListItem.title)
+         values.put(COLUMN_POPULARITY, movieListItem.popularity)
+         values.put(COLUMN_POSTER_PATH, movieListItem.posterPath)
+         values.put(COLUMN_OVERVIEW, movieListItem.overview)
+         values.put(COLUMN_RELEASE_DATE, movieListItem.releaseDate)
          val newRowId = db.insert(TABLE_FAVOURITE_MOVIE, null, values)
 
          return true
@@ -65,7 +66,7 @@ class MovieDB(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
-            cursor = db.rawQuery("select * from " + TABLE_FAVOURITE_MOVIE+" order by "+ COLUMN_ID+" desc", null)
+            cursor = db.rawQuery("select * from " + TABLE_FAVOURITE_MOVIE +" order by "+ COLUMN_ID +" desc", null)
         } catch (e: SQLiteException) {
 //            db.execSQL(SQL_CREATE_ENTRIES)
             return ArrayList()
@@ -98,7 +99,7 @@ class MovieDB(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
-            cursor = db.rawQuery("select "+ COLUMN_MOVIE_ID+" from " + TABLE_FAVOURITE_MOVIE, null)
+            cursor = db.rawQuery("select "+ COLUMN_MOVIE_ID +" from " + TABLE_FAVOURITE_MOVIE, null)
         } catch (e: SQLiteException) {
 //            db.execSQL(SQL_CREATE_ENTRIES)
             return ArrayList()

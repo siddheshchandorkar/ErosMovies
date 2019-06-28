@@ -10,7 +10,7 @@ import android.widget.Filter;
 import android.widget.TextView;
 import com.example.erostest.model.MovieListItem;
 import com.siddhesh.errosmovies.R;
-import com.siddhesh.errosmovies.ui.MovieSearchAPI;
+import com.siddhesh.errosmovies.ui.view_model.networkkotlin.MovieSearchAPI;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;

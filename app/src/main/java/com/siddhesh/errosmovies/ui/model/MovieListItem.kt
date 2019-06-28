@@ -1,15 +1,19 @@
 package com.example.erostest.model
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import java.util.ArrayList
 
+
+@Entity(tableName = "favourite_movies")
 public class MovieListItem {
 
 
-    @SerializedName("vote_count")
-    var voteCount: Int = 0
+    @PrimaryKey
     @SerializedName("id")
     var id: Long = 0
+    @SerializedName("vote_count")
+    var voteCount: Int = 0
     @SerializedName("video")
     var isVideo: Boolean = false
     @SerializedName("vote_average")
@@ -32,10 +36,15 @@ public class MovieListItem {
     var overview: String = ""
     @SerializedName("release_date")
     var releaseDate: String = ""
-    @SerializedName("genre_ids")
-    var genreIds: List<Int> = ArrayList()
+//    @SerializedName("genre_ids")
+//    var genreIds: List<Int> = ArrayList()
 
-    var selected=false
+    var selected = false
+
+//    @ColumnInfo(name = "created_at")
+//    @TypeConverters({TimestampConverter::class})
+//    private val createdAt: Date? = null
+
 
     override fun toString(): String {
         return title
