@@ -1,7 +1,7 @@
 package com.example.erostest.model
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 
@@ -15,6 +15,7 @@ public class MovieListItem {
     @SerializedName("vote_count")
     var voteCount: Int = 0
     @SerializedName("video")
+
     var isVideo: Boolean = false
     @SerializedName("vote_average")
     var voteAverage: Float = 0.0F

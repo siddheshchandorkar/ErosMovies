@@ -1,9 +1,9 @@
 package com.siddhesh.errosmovies.ui.view_model
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.example.erostest.model.MovieListItem
 
 
@@ -12,7 +12,7 @@ open abstract class MovieRoomDB : RoomDatabase() {
 
     abstract fun daoAccess(): DaoAccess
 
-    fun add(){
+    fun add() {
 
     }
 

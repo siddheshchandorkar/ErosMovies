@@ -1,14 +1,14 @@
 package com.siddhesh.errosmovies.ui.view
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.siddhesh.errosmovies.R
-import com.squareup.picasso.Picasso
-import android.app.ActivityOptions
 import com.squareup.picasso.NetworkPolicy
+import com.squareup.picasso.Picasso
 
 
 class SplashActivity : AppCompatActivity() {
@@ -26,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             val options = ActivityOptions.makeSceneTransitionAnimation(this)
 
-            startActivity(Intent(this, MainActivity::class.java),options.toBundle());
+            startActivity(Intent(this, MainActivity::class.java), options.toBundle());
             finish()
         }, 3000)
     }

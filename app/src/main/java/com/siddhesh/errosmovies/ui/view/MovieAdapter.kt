@@ -5,13 +5,13 @@ import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.example.erostest.Constants
 import com.example.erostest.model.MovieListItem
 import com.siddhesh.errosmovies.R
@@ -54,7 +54,8 @@ class MovieAdapter(
         holder.rootView.setOnClickListener {
             iMovieClick.movieItemClick(position)
 
-            val options = ActivityOptions.makeSceneTransitionAnimation(context as Activity?, holder.ivMoviePoster, "robot")
+            val options =
+                ActivityOptions.makeSceneTransitionAnimation(context as Activity?, holder.ivMoviePoster, "robot")
 
             var intent = Intent(context, MovieDetailsActivity::class.java)
             intent.putExtra(Constants.KEY_MOVIE_ID, alMovie[position].id)

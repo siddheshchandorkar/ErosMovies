@@ -1,10 +1,10 @@
 package com.example.erostest.ui.main
 
 import android.content.Context
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.siddhesh.errosmovies.R
 
 
@@ -18,7 +18,7 @@ class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
         // getItem is called to instantiate the fragment for the given page.
         // Return a MoviesFragment (defined as a static inner class below).
         //        return MoviesFragment.Companion.newInstance(position + 1);
-        return MoviesFragment.newInstance(position )
+        return MoviesFragment.newInstance(position)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

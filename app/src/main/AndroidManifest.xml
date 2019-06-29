@@ -12,6 +12,7 @@
             android:roundIcon="@mipmap/ic_eros_now"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
+
             tools:ignore="GoogleAppIndexingWarning">
         <activity
                 android:name=".ui.view.SplashActivity"

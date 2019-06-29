@@ -1,7 +1,6 @@
 package com.siddhesh.errosmovies.ui.view_model
 
-import android.arch.lifecycle.LiveData
-import android.support.annotation.WorkerThread
+import androidx.annotation.WorkerThread
 import com.example.erostest.model.MovieListItem
 
 class MovieRepository(private var daoAccess: DaoAccess) {

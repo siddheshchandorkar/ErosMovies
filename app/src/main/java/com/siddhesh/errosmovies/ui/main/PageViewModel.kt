@@ -1,10 +1,8 @@
 package com.example.erostest.ui.main
 
-import android.arch.core.util.Function
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Transformations
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 
 class PageViewModel : ViewModel() {
 

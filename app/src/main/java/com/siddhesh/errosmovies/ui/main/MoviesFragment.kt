@@ -1,11 +1,7 @@
 package com.example.erostest.ui.main
 
-import android.app.AlertDialog
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.telephony.AccessNetworkConstants
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -15,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
 import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.erostest.model.MovieListItem
 import com.example.erostest.model.MovieResultByDiscoverPopularity
 import com.selltm.app.networkkotlin.APIRequestsKotalin
@@ -22,7 +21,8 @@ import com.siddhesh.errosmovies.R
 import com.siddhesh.errosmovies.ui.view.LoadingDialog
 import com.siddhesh.errosmovies.ui.view.MovieAdapter
 import com.siddhesh.errosmovies.ui.view.MovieSearchAdapter
-import com.siddhesh.errosmovies.ui.view_model.*
+import com.siddhesh.errosmovies.ui.view_model.MovieDB
+import com.siddhesh.errosmovies.ui.view_model.MovieViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,15 +32,11 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
     override fun addToFav(position: Int) {
 
 
-        var movieViewModel: MovieViewModel = MovieViewModel( activity!!.application)
+        var movieViewModel: MovieViewModel = MovieViewModel(activity!!.application)
 
 
 
-        Log.d("Siddhesh", "Fav Movies List: "+movieViewModel.allFavMovie)
-
-
-
-
+        Log.d("Siddhesh", "Fav Movies List: " + movieViewModel.allFavMovie)
 
 
         /*
@@ -171,6 +167,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
         }
     }
 
+    @SuppressLint("WrongConstant")
     private fun initialisation() {
 
 

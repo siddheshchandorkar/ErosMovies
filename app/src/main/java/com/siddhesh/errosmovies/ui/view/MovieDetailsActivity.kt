@@ -1,33 +1,33 @@
 package com.siddhesh.errosmovies.ui.view
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.MenuItem
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.example.erostest.Constants
 import com.selltm.app.networkkotlin.APIRequestsKotalin
 import com.siddhesh.errosmovies.R
+import com.siddhesh.errosmovies.databinding.ActivityMovieDetailsBinding
 import com.siddhesh.errosmovies.ui.model.MovieDetails
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.view.MenuItem
-import com.siddhesh.errosmovies.databinding.ActivityMovieDetailsBinding
-import com.squareup.picasso.NetworkPolicy
 
 
 class MovieDetailsActivity : AppCompatActivity() {
 
     private var movieId: Long = 0
-    private lateinit var  binding: ActivityMovieDetailsBinding
+    private lateinit var binding: ActivityMovieDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 //        setContentView(R.layout.activity_movie_details)
-         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details)
 
 
         var bundle: Bundle = intent.extras
@@ -43,7 +43,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.iv_back).setOnClickListener { onBackPressed() }
     }
 
-   override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             android.R.id.home -> {
@@ -107,7 +107,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
 //        binding.setVariable(com.siddhesh.errosmovies.BR.movi)
 //        binding.setVariable(BR.user, movieDetails)
-        binding.movieDetails =movieDetails
+        binding.movieDetails = movieDetails
         binding.executePendingBindings()
 
 //        findViewById<TextView>(R.id.tv_overview).text = movieDetails.overview

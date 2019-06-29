@@ -1,10 +1,10 @@
 package com.siddhesh.errosmovies.ui.view_model
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 import com.example.erostest.model.MovieListItem
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.Query
 
 
 @Dao
