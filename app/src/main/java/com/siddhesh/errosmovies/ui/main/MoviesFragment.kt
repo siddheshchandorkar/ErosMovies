@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.telephony.AccessNetworkConstants
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -18,10 +19,10 @@ import com.example.erostest.model.MovieListItem
 import com.example.erostest.model.MovieResultByDiscoverPopularity
 import com.selltm.app.networkkotlin.APIRequestsKotalin
 import com.siddhesh.errosmovies.R
-import com.siddhesh.errosmovies.ui.view_model.MovieDB
 import com.siddhesh.errosmovies.ui.view.LoadingDialog
 import com.siddhesh.errosmovies.ui.view.MovieAdapter
 import com.siddhesh.errosmovies.ui.view.MovieSearchAdapter
+import com.siddhesh.errosmovies.ui.view_model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +30,20 @@ import retrofit2.Response
 
 class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
     override fun addToFav(position: Int) {
+
+
+        var movieViewModel: MovieViewModel = MovieViewModel( activity!!.application)
+
+
+
+        Log.d("Siddhesh", "Fav Movies List: "+movieViewModel.allFavMovie)
+
+
+
+
+
+
+        /*
 
         if (!alMovie[position].selected) {
             val builder = AlertDialog.Builder(activity)
@@ -86,7 +101,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
 
 
             builder.show()
-        }
+        }*/
 
     }
 

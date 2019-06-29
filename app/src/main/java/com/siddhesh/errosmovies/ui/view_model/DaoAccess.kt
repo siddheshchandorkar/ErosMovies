@@ -8,7 +8,7 @@ import android.arch.persistence.room.Query
 
 
 @Dao
-public interface DaoAccess {
+interface DaoAccess {
 
     @Insert
     fun insertFavouriteMovie(movieListItem: MovieListItem): Long
