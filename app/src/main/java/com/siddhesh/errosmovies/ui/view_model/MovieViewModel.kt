@@ -9,16 +9,16 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
 
     private var repository: MovieRepository
-    var allFavMovie: LiveData<ArrayList<MovieListItem>>
+    var allFavMovie: ArrayList<MovieListItem>
 
     init {
         val movieDao: MovieRoomDB = MovieRoomDB.getAppDatabase(application) as MovieRoomDB
         repository = MovieRepository(movieDao.daoAccess())
 
-        allFavMovie = repository.alFavMovie
+        allFavMovie = repository.alFavMovie as ArrayList<MovieListItem>
     }
 
-    suspend fun insert(word: MovieListItem) {
+     fun insert(word: MovieListItem) {
         repository.insertFavMovie(word)
     }
 }

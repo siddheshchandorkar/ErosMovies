@@ -58,7 +58,7 @@ class MovieAdapter(
                 ActivityOptions.makeSceneTransitionAnimation(context as Activity?, holder.ivMoviePoster, "robot")
 
             var intent = Intent(context, MovieDetailsActivity::class.java)
-            intent.putExtra(Constants.KEY_MOVIE_ID, alMovie[position].id)
+            intent.putExtra(Constants.KEY_MOVIE_ID, alMovie[position].movieId)
             (context as Activity).startActivity(intent, options.toBundle())
         }
 
@@ -75,6 +75,7 @@ class MovieAdapter(
 
 
         holder.ivFav.setOnClickListener {
+
             iMovieClick.addToFav(position)
 
 //            if (alMovie[position].selected) {

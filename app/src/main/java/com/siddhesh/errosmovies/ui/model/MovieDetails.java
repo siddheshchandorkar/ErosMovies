@@ -12,16 +12,16 @@ public class MovieDetails {
      * backdrop_path : /v4yVTbbl8dE1UP2dWu5CLyaXOku.jpg
      * belongs_to_collection : null
      * budget : 183000000
-     * genres : [{"id":12,"name":"Adventure"},{"id":14,"name":"Fantasy"},{"id":10749,"name":"Romance"},{"id":35,"name":"Comedy"},{"id":10751,"name":"Family"}]
+     * genres : [{"movieId":12,"name":"Adventure"},{"movieId":14,"name":"Fantasy"},{"movieId":10749,"name":"Romance"},{"movieId":35,"name":"Comedy"},{"movieId":10751,"name":"Family"}]
      * homepage : https://movies.disney.com/aladdin-2019
-     * id : 420817
+     * movieId : 420817
      * imdb_id : tt6139732
      * original_language : en
      * original_title : Aladdin
      * overview : A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.
      * popularity : 445.349
      * poster_path : /3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg
-     * production_companies : [{"id":2,"logo_path":"/4MbjW4f9bu6LvlDmyIvfyuT3boj.png","name":"Walt Disney Pictures","origin_country":"US"},{"id":2723,"logo_path":null,"name":"Lin Pictures","origin_country":"US"},{"id":118854,"logo_path":null,"name":"Rideback","origin_country":""},{"id":2527,"logo_path":"/osO7TGmlRMistSQ5JZusPhbKUHk.png","name":"Marc Platt Productions","origin_country":"US"},{"id":88016,"logo_path":null,"name":"Hurwitz Creative","origin_country":""}]
+     * production_companies : [{"movieId":2,"logo_path":"/4MbjW4f9bu6LvlDmyIvfyuT3boj.png","name":"Walt Disney Pictures","origin_country":"US"},{"movieId":2723,"logo_path":null,"name":"Lin Pictures","origin_country":"US"},{"movieId":118854,"logo_path":null,"name":"Rideback","origin_country":""},{"movieId":2527,"logo_path":"/osO7TGmlRMistSQ5JZusPhbKUHk.png","name":"Marc Platt Productions","origin_country":"US"},{"movieId":88016,"logo_path":null,"name":"Hurwitz Creative","origin_country":""}]
      * production_countries : [{"iso_3166_1":"US","name":"United States of America"}]
      * release_date : 2019-05-22
      * revenue : 267862689
@@ -276,7 +276,7 @@ public class MovieDetails {
 
     public static class Genres {
         /**
-         * id : 12
+         * movieId : 12
          * name : Adventure
          */
 
@@ -307,7 +307,7 @@ public class MovieDetails {
 
     public static class ProductionCompanies {
         /**
-         * id : 2
+         * movieId : 2
          * logo_path : /4MbjW4f9bu6LvlDmyIvfyuT3boj.png
          * name : Walt Disney Pictures
          * origin_country : US

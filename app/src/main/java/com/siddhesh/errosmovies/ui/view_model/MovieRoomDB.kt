@@ -7,8 +7,8 @@ import androidx.room.RoomDatabase
 import com.example.erostest.model.MovieListItem
 
 
-@Database(entities = [MovieListItem::class], version = 1, exportSchema = false)
-open abstract class MovieRoomDB : RoomDatabase() {
+@Database(entities = [MovieListItem::class], version = 2)
+abstract class MovieRoomDB : RoomDatabase() {
 
     abstract fun daoAccess(): DaoAccess
 
@@ -25,9 +25,7 @@ open abstract class MovieRoomDB : RoomDatabase() {
 
         fun getAppDatabase(context: Context): RoomDatabase {
             if (INSTANCE == null) {
-                INSTANCE = Room.databaseBuilder(context, RoomDatabase::class.java, "Movie")
-                    .allowMainThreadQueries()
-                    .build() as MovieRoomDB
+                INSTANCE = Room.databaseBuilder(context, MovieRoomDB::class.java, "movie_database").allowMainThreadQueries().build() as MovieRoomDB
             }
             return INSTANCE as MovieRoomDB
         }

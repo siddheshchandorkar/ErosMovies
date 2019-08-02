@@ -12,8 +12,7 @@ import com.example.erostest.model.MovieListItem
 
 class MovieDB(context: Context) : SQLiteOpenHelper(context,
     DATABASE_NAME, null,
-    DATABASE_VERSION
-) {
+    DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase) {
 
@@ -42,7 +41,7 @@ class MovieDB(context: Context) : SQLiteOpenHelper(context,
          val db = writableDatabase
 
          val values = ContentValues()
-         values.put(COLUMN_MOVIE_ID, movieListItem.id)
+         values.put(COLUMN_MOVIE_ID, movieListItem.movieId)
          values.put(COLUMN_VOTE_COUNT, movieListItem.voteCount)
          values.put(COLUMN_VOTE_AVERAGE, movieListItem.voteAverage)
          values.put(COLUMN_TITLE, movieListItem.title)
@@ -76,7 +75,7 @@ class MovieDB(context: Context) : SQLiteOpenHelper(context,
         if (cursor!!.moveToFirst()) {
             while (!cursor.isAfterLast) {
                 val movieListItem = MovieListItem()
-                movieListItem.id = cursor.getLong(cursor.getColumnIndex(COLUMN_MOVIE_ID))
+                movieListItem.movieId = cursor.getLong(cursor.getColumnIndex(COLUMN_MOVIE_ID))
                 movieListItem.voteCount = cursor.getInt(cursor.getColumnIndex(COLUMN_VOTE_COUNT))
                 movieListItem.voteAverage = cursor.getFloat(cursor.getColumnIndex(COLUMN_VOTE_AVERAGE))
                 movieListItem.title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE))
@@ -125,7 +124,7 @@ class MovieDB(context: Context) : SQLiteOpenHelper(context,
         val TABLE_FAVOURITE_MOVIE = "favourite_movies"
 
         val COLUMN_ID = "_id"
-        val COLUMN_MOVIE_ID = "id"
+        val COLUMN_MOVIE_ID = "movie_id"
         val COLUMN_VOTE_COUNT = "vote_count"
         val COLUMN_VOTE_AVERAGE = "vote_average"
         val COLUMN_TITLE = "title"

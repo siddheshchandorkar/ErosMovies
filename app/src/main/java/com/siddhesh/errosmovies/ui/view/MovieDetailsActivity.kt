@@ -90,7 +90,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
 
         supportPostponeEnterTransition()
-//        findViewById<ImageView>(R.id.iv_movie_poster).getViewTreeObserver().addOnPreDrawListener(
+//        findViewById<ImageView>(R.movieId.iv_movie_poster).getViewTreeObserver().addOnPreDrawListener(
 //            object : ViewTreeObserver.OnPreDrawListener {
 //                override fun onPreDraw(): Boolean {
 //                    ivBackdrop.getViewTreeObserver().removeOnPreDrawListener(this)
@@ -110,16 +110,16 @@ class MovieDetailsActivity : AppCompatActivity() {
         binding.movieDetails = movieDetails
         binding.executePendingBindings()
 
-//        findViewById<TextView>(R.id.tv_overview).text = movieDetails.overview
-//        findViewById<TextView>(R.id.tv_title).text = movieDetails.title+"("+movieDetails.releaseDate.subSequence(0, 4)+")"
-//        findViewById<TextView>(R.id.tv_tags).text = movieDetails.genres.toString().replace("[","").replace("]", "")
-//        findViewById<TextView>(R.id.tv_production_company).text = movieDetails.productionCompanies.toString().replace("[","").replace("]", "")
-//        findViewById<TextView>(R.id.tv_production_country).text = movieDetails.productionCountries.toString().replace("[","").replace("]", "")
-//        findViewById<TextView>(R.id.tv_SpokenLanguages).text = movieDetails.spokenLanguages.toString().replace("[","").replace("]", "")
+//        findViewById<TextView>(R.movieId.tv_overview).text = movieDetails.overview
+//        findViewById<TextView>(R.movieId.tv_title).text = movieDetails.title+"("+movieDetails.releaseDate.subSequence(0, 4)+")"
+//        findViewById<TextView>(R.movieId.tv_tags).text = movieDetails.genres.toString().replace("[","").replace("]", "")
+//        findViewById<TextView>(R.movieId.tv_production_company).text = movieDetails.productionCompanies.toString().replace("[","").replace("]", "")
+//        findViewById<TextView>(R.movieId.tv_production_country).text = movieDetails.productionCountries.toString().replace("[","").replace("]", "")
+//        findViewById<TextView>(R.movieId.tv_SpokenLanguages).text = movieDetails.spokenLanguages.toString().replace("[","").replace("]", "")
 
 //        val hours = movieDetails.runtime / 60
 //        val minutes = movieDetails.runtime % 60
-//        findViewById<TextView>(R.id.tv_duration).text = String.format("%d hr %02d min", hours, minutes)
+//        findViewById<TextView>(R.movieId.tv_duration).text = String.format("%d hr %02d min", hours, minutes)
 
     }
 }

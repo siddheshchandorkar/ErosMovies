@@ -8,7 +8,7 @@ class MovieRepository(private var daoAccess: DaoAccess) {
     var alFavMovie = daoAccess.fetchAllFavouriteMovies()
 
     @WorkerThread
-    suspend fun insertFavMovie(movieListItem: MovieListItem) {
+    fun insertFavMovie(movieListItem: MovieListItem) {
         daoAccess.insertFavouriteMovie(movieListItem)
 
     }

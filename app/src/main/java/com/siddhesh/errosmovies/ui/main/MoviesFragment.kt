@@ -29,14 +29,16 @@ import retrofit2.Response
 
 
 class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
+    lateinit var  movieViewModel: MovieViewModel
+
     override fun addToFav(position: Int) {
 
 
-        var movieViewModel: MovieViewModel = MovieViewModel(activity!!.application)
 
 
+        movieViewModel.insert(alMovie[position])
 
-        Log.d("Siddhesh", "Fav Movies List: " + movieViewModel.allFavMovie)
+
 
 
         /*
@@ -50,7 +52,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
             builder.setPositiveButton(android.R.string.yes) { dialog, which ->
                 if (movieDB != null) {
 
-                    if (!movieDB.getAllFavId().toString().contains(alMovie[position].id.toString()))
+                    if (!movieDB.getAllFavId().toString().contains(alMovie[position].movieId.toString()))
                         movieDB.insertUser(alMovie[position])
                     Log.d("Siddhesh", "Check DB:" + movieDB.getAllFavId())
 
@@ -77,11 +79,11 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
             builder.setPositiveButton(android.R.string.yes) { dialog, which ->
                 if (movieDB != null) {
 
-//                    if (!movieDB.getAllFavId().toString().contains(alMovie[position].id.toString()))
+//                    if (!movieDB.getAllFavId().toString().contains(alMovie[position].movieId.toString()))
 //                        movieDB.insertUser(alMovie[position])
 //                    Log.d("Siddhesh", "Check DB:" + movieDB.getAllFavId())
 
-                    movieDB.favoriteDelete(alMovie.get(position).id)
+                    movieDB.favoriteDelete(alMovie.get(position).movieId)
 
                     alMovie[position].selected = false
                     adapter.notifyItemChanged(position)
@@ -123,7 +125,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
 //        val options = ActivityOptions.makeSceneTransitionAnimation(activity)
 //
 //        var intent =Intent(activity, MovieDetailsActivity::class.java)
-//        intent.putExtra(Constants.KEY_MOVIE_ID, alMovie[position].id)
+//        intent.putExtra(Constants.KEY_MOVIE_ID, alMovie[position].movieId)
 //        startActivity(intent, options.toBundle())
 
     }
@@ -137,6 +139,9 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
         if (arguments != null) {
             index = arguments!!.getInt(ARG_SECTION_NUMBER)
         }
+        movieViewModel= MovieViewModel(activity!!.application)
+        Log.d("Siddhesh", "Fav Movies List: " + movieViewModel.allFavMovie)
+
     }
 
     override fun onCreateView(
@@ -144,7 +149,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
         savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.fragment_main, container, false)
-//        val textView = root.findViewById<TextView>(R.id.section_label)
+//        val textView = root.findViewById<TextView>(R.movieId.section_label)
 //        pageViewModel!!.text.observe(this, Observer { s -> textView.text = s })
 
         initialisation()
@@ -163,6 +168,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
         if (index == 1) {
             alMovie.clear()
             alMovie.addAll(movieDB.readAllFavMovie())
+            alMovie.addAll(movieViewModel.allFavMovie)
             adapter.notifyDataSetChanged()
         }
     }
@@ -312,7 +318,7 @@ class MoviesFragment : Fragment(), MovieAdapter.IMovieClick {
                         var ids = movieDB.getAllFavId().toString()
                         for (i in 0..response.body()!!.results.size - 1) {
                             var movieListItem = response.body()!!.results[i]
-                            if (ids.contains(movieListItem.id.toString())) {
+                            if (ids.contains(movieListItem.movieId.toString())) {
                                 movieListItem.selected = true
 
                             }
